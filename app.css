@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #f1f1f1;
+}
+
+
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.logo-wrapper {
+    padding: 20px 10px;
+    background-color: #fb0;
+}
+
+nav {
+    padding: 10px;
+    background-color: #bb5566;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+nav ul a.active{
+}
