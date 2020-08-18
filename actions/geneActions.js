@@ -7,14 +7,14 @@ export let actions = {
     GET_TRANSCRIPTS_ERROR: 'GET_TRANSCRIPTS_ERROR'
 }
 
-export function getTranscripts(symbol, protein, acid) {
+export function getTranscripts({symbolName, sequencePosition, acidLetter}) {
     return dispatch => {
         dispatch({
             type: actions.GET_TRANSCRIPTS_PROGRESS
         })
 
         // Make service call
-        dataService.getTranscripts(symbol, protein, acid).then(response => {
+        dataService.getTranscripts(symbolName, sequencePosition, acidLetter).then(response => {
             if(response.status === 200){
                 dispatch({
                     type: actions.GET_TRANSCRIPTS_SUCCESS,

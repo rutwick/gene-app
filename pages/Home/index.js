@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getTranscripts } from '../../actions/geneActions'
 import Search from '../../components/Search'
+import List from '../../components/List'
 
 class Home extends Component {
     constructor(props) {
@@ -9,30 +10,27 @@ class Home extends Component {
     }
 
     searchTranscripts = data => {
-        let {symbol, protein, acid } = data
-        this.props.getTranscripts(symbol, protein, acid)
+        this.props.getTranscripts(data)
     }
 
     render() {
         return (
             <div>
-                <div className="home">
+                <div className="content">
+                    <h3>Find transcripts</h3>
+
                     <Search searchTranscripts={this.searchTranscripts} />
                     { this.props.fetchingTranscripts &&
-                        <span>Loading...</span>
+                        <span className="status loading">Loading...</span>
                     }
                     { this.props.fetchingTranscriptsError &&
-                        <span>Some error occurred.</span>
+                        <span className="status error">Some error occurred.</span>
                     }
                     { this.props.transcripts && this.props.transcripts.Transcript &&
-                        <ul>
-                        {   this.props.transcripts.Transcript.map(transcript => {
-                                return (<li key={transcript.id}>
-                                    <a href={`http://www.ensembl.org/id/${transcript.id}`} target="_blank">{transcript.id}</a>
-                                </li>)
-                            })
-                        }
-                        </ul>
+                        <>
+                            <h3>Results:</h3>
+                            <List items={this.props.transcripts.Transcript} />
+                        </>
                     }
                 </div>
             </div>

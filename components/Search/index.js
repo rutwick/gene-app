@@ -5,43 +5,66 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            symbol: '',
-            protein: '',
-            acid: ''
+            symbolName: '',
+            sequencePosition: '',
+            acidLetter: '',
+            error: ''
         }
     }
 
     submit = e => {
         e.preventDefault();
-        this.props.searchTranscripts(this.state);
+
+        if(!(this.state.symbolName && this.state.sequencePosition && this.state.acidLetter)) {
+            this.setState({
+                error: 'Please enter all values!'
+            })
+        } else {
+            this.setState({
+                error: ''
+            })
+            this.props.searchTranscripts(this.state);
+        }
     }
 
-    updateSymbol = e => {
+    updateSymbolName = e => {
         this.setState({
-            symbol: e.target.value
+            symbolName: e.target.value
         })
     }
 
-    updateProtein = e => {
+    updateSequencePosition = e => {
         this.setState({
-            protein: e.target.value
+            sequencePosition: e.target.value
         })
     }
 
-    updateAcid = e => {
+    updateAcidLetter = e => {
         this.setState({
-            acid: e.target.value
+            acidLetter: e.target.value
         })
     }
 
     render() {
         return (
-            <div>
+            <div className="searchForm">
                 <form onSubmit={this.submit}>
-                    <input type="text" placeholder="Enter Symbol Name" value={this.state.symbol} onChange={this.updateSymbol}></input>
-                    <input type="text" placeholder="Enter Protein Sequence" value={this.state.protein} onChange={this.updateProtein}></input>
-                    <input type="text" placeholder="Enter Amino Acid letter" value={this.state.acid} onChange={this.updateAcid}></input>
+                    <label>
+                        Symbol
+                        <input type="text" placeholder="Enter Symbol Name" value={this.state.symbolName} onChange={this.updateSymbolName}></input>
+                    </label>
+                    <label>
+                        Protein Sequence Position
+                        <input type="text" placeholder="Enter Protein Sequence" value={this.state.sequencePosition} onChange={this.updateSequencePosition}></input>
+                    </label>
+                    <label>
+                        Acid Letter
+                        <input type="text" placeholder="Enter Amino Acid letter" value={this.state.acidLetter} onChange={this.updateAcidLetter}></input>
+                    </label>
                     <input type="submit" value="Submit" />
+                    { this.state.error &&
+                        <span className="error">{this.state.error}</span>
+                    }
                 </form>
             </div>
         )

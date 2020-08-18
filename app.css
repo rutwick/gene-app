@@ -5,28 +5,37 @@ body {
     background: #f1f1f1;
 }
 
-
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
 
 .container{
     width: 80%;
     margin: 0 auto;
 }
 
-.logo-wrapper {
-    padding: 20px 10px;
-    background-color: #fb0;
-}
-
-nav {
+.content {
+    background-color: #fff;
     padding: 10px;
-    background-color: #bb5566;
 }
 
-nav ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+.status {
+    font-style: italic;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-nav ul a.active{
+.status.error::before {
+    display: inline-block;
+    content: "!";
+    border-radius: 50%;
+    border: 1px solid red;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    text-align: center;
+    color: #ff5e00db;
+    font-weight: bold;
+    margin-right: 5px;
 }
