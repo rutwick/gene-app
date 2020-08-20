@@ -39,3 +39,25 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     margin-right: 5px;
 }
+
+.itemList {
+    list-style: decimal;
+}
+
+.itemList li {
+    padding: 5px 0;
+}
+
+.itemList li a {
+    color: #444;
+}
+
+.itemList li a,
+.itemList li a:active,
+.itemList li a:visited {
+    text-decoration: none;
+}
+
+.itemList li a:hover {
+    text-decoration: underline;
+}

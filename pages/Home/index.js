@@ -7,10 +7,19 @@ import List from '../../components/List'
 class Home extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            sequencePosition: '',
+            acidLetter: ''
+        }
     }
 
     searchTranscripts = data => {
-        this.props.getTranscripts(data)
+        let {sequencePosition, acidLetter, symbolName } = data;
+        this.setState({
+            sequencePosition,
+            acidLetter
+        })
+        this.props.getTranscripts(symbolName)
     }
 
     render() {
@@ -29,7 +38,7 @@ class Home extends Component {
                     { this.props.transcripts && this.props.transcripts.Transcript &&
                         <>
                             <h3>Results:</h3>
-                            <List items={this.props.transcripts.Transcript} />
+                            <List items={this.props.transcripts.Transcript} position={this.state.sequencePosition} aminoAcid={this.state.acidLetter}/>
                         </>
                     }
                 </div>
@@ -40,7 +49,6 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.posts,
         transcripts: state.transcripts,
         fetchingTranscripts: state.fetchingTranscripts,
         fetchingTranscriptsError: state.fetchingTranscriptsError

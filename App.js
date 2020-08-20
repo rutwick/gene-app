@@ -3,7 +3,7 @@ import Home from './pages/Home'
 import List from './pages/List'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import { Route, BrowserRouter, Switch } from 'react-router-dom'
+import { Route, HashRouter, Switch } from 'react-router-dom'
 
 class App extends Component {
     constructor(props) {
@@ -12,16 +12,16 @@ class App extends Component {
 
     render() {
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <div className="container">
                     <Navbar />
                     <Switch>
                         <Route exact path='/' component={Home}/>
-                        <Route path='/:post_id' component={List} />
+                        <Route path='/list/:id/:position/:letter' component={List} />
                     </Switch>
                     <Footer />
                 </div>
-            </BrowserRouter>
+            </HashRouter>
         )
     }
 }
